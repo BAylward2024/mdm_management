@@ -1,0 +1,1 @@
+<div>Hello World</div><?php /**PATH C:\src\Laravel\mdm-project\resources\views/sub.blade.php ENDPATH**/ ?>
