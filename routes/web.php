@@ -7,6 +7,7 @@ Route::get('/', function () {
     return view('layout');
 })->name('home');
 
+
 Route::get('/operating_system', 'App\Http\Controllers\OSController@index')->name('os');
 
 Route::get('/alias', 'App\Http\Controllers\AliasController@index')->name('alias');
