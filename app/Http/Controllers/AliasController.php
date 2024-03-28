@@ -46,4 +46,22 @@ class AliasController extends Controller
 
         return redirect('alias');
     }
+
+    public function filter(Request $request)
+    {
+        $filter = $request->input('filter');
+        if ($filter == 'os') {
+            $alias = DB::table('mdm.alias')->where('fact_table', '=', 'fact_operating_system')->orderBy('alias', 'asc')
+                ->get();
+            return view('layout', ['alias' => $alias]);
+        } else if ($filter == 'partner') {
+            $alias = DB::table('mdm.alias')->where('fact_table', '=', 'fact_partner')->orderBy('alias', 'asc')
+                ->get();
+            return view('layout', ['alias' => $alias]);
+        } else {
+            $alias = DB::table('mdm.alias')->orderBy('alias', 'asc')
+                ->get();
+            return view('layout', ['alias' => $alias]);
+        }
+    }
 }

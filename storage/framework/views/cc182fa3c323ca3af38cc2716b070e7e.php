@@ -1,5 +1,21 @@
 <div>
+    <h1 class="h1-header">Alias</h1>
     <div>
+        <span class="alias-group-by-title">Filter By:</span>
+        <div class="alias-group-by">
+            <form action="<?php echo e(route('alias.os')); ?>">
+                <input type="hidden" name="filter" value="os">
+                <button type="submit">Operating System</button>
+            </form>
+            <form action="<?php echo e(route('alias.partner')); ?>">
+                <input type="hidden" name="filter" value="partner">
+                <button type="submit">Partner</button>
+            </form>
+            <form action="<?php echo e(route('alias')); ?>">
+                <button type="submit">Clear</button>
+            </form>
+        </div>
+
         <table>
             <thead>
                 <tr>

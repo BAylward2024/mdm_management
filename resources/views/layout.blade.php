@@ -27,9 +27,19 @@
             @if(Route::is('versions'))
             @include('version')
             @endif
+
             @if(Route::is('os'))
             @include('os')
             @endif
+
+            @if(Route::is('alias.os'))
+            @include('alias')
+            @endif
+            @if(Route::is('alias.partner'))
+            @include('alias')
+            @endif
+
+
             @if(Route::is('alias'))
             @include('alias')
             @endif

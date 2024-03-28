@@ -27,9 +27,19 @@
             <?php if(Route::is('versions')): ?>
             <?php echo $__env->make('version', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php endif; ?>
+
             <?php if(Route::is('os')): ?>
             <?php echo $__env->make('os', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php endif; ?>
+
+            <?php if(Route::is('alias.os')): ?>
+            <?php echo $__env->make('alias', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <?php endif; ?>
+            <?php if(Route::is('alias.partner')): ?>
+            <?php echo $__env->make('alias', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <?php endif; ?>
+
+
             <?php if(Route::is('alias')): ?>
             <?php echo $__env->make('alias', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php endif; ?>

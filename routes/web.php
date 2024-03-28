@@ -12,6 +12,9 @@ Route::get('/operating_system', 'App\Http\Controllers\OSController@index')->name
 
 Route::get('/alias', 'App\Http\Controllers\AliasController@index')->name('alias');
 
+Route::get('/alias/operating_system', 'App\Http\Controllers\AliasController@filter')->name('alias.os');
+Route::get('/alias/partner', 'App\Http\Controllers\AliasController@filter')->name('alias.partner');
+
 Route::post('/alias.assign', 'App\Http\Controllers\AliasController@updateAlias')->name('alias.assign');
 
 Route::post('/alias.delete', 'App\Http\Controllers\AliasController@deleteAlias')->name('alias.delete');
