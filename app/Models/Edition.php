@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Edition extends Model
 {
     use HasFactory;
+
+    protected $table = 'mdm.dim_edition';
 }

@@ -12,6 +12,9 @@ Route::get('/operating_system', 'App\Http\Controllers\OSController@index')->name
 
 Route::get('/alias', 'App\Http\Controllers\AliasController@index')->name('alias');
 
+
+Route::get('/aliasmodel', 'App\Http\Controllers\AliasController@aliasModel')->name('aliasmodel');
+
 Route::get('/alias/operating_system', 'App\Http\Controllers\AliasController@filter')->name('alias.os');
 Route::get('/alias/partner', 'App\Http\Controllers\AliasController@filter')->name('alias.partner');
 

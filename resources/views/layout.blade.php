@@ -43,6 +43,10 @@
             @if(Route::is('alias'))
             @include('alias')
             @endif
+
+            @if(Route::is('aliasmodel'))
+            @include('aliasmodel')
+            @endif
         </div>
     </div>
 </body>

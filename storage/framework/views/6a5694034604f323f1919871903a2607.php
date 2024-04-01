@@ -43,6 +43,10 @@
             <?php if(Route::is('alias')): ?>
             <?php echo $__env->make('alias', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php endif; ?>
+
+            <?php if(Route::is('aliasmodel')): ?>
+            <?php echo $__env->make('aliasmodel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <?php endif; ?>
         </div>
     </div>
 </body>

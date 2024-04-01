@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alias;
+use App\Models\FactOperatingSystem;
+use App\Models\FactPartner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 
 class AliasController extends Controller
 {
@@ -63,5 +67,15 @@ class AliasController extends Controller
                 ->get();
             return view('layout', ['alias' => $alias]);
         }
+    }
+
+    public function aliasModel()
+    {
+        $alias = new Alias();
+
+        $aliasPartner = $alias->getPartnerFact();
+        $aliasOS = $alias->getOSFact();
+
+        return view('layout', ['alias' => $alias, 'aliasPartner' => $aliasPartner, 'aliasOS' => $aliasOS]);
     }
 }

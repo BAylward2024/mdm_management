@@ -9,6 +9,7 @@
             <li><a href="/distributions">Distributions</a></li>
             <li><a href="/versions">Versions</a></li>
             <li><a href="/editions">Editions</a></li>
+            <li><a href="/aliasmodel">Alias Model</a></li>
         </ul>
     </div>
 
