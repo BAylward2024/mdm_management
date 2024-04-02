@@ -14,18 +14,10 @@ class AliasController extends Controller
 {
     public function index()
     {
-        $alias = DB::table('mdm.alias')->orderBy('alias', 'asc')
+        $alias = Alias::orderBy('id', 'asc')
             ->get();
 
-        $os_join = DB::table('mdm.fact_operating_system')
-            ->join('mdm.dim_distribution', 'fact_operating_system.distribution_id', '=', 'dim_distribution.id')
-            ->join('mdm.dim_edition', 'fact_operating_system.edition_id', '=', 'dim_edition.id')
-            ->join('mdm.dim_version', 'fact_operating_system.version_id', '=', 'dim_version.id')
-            ->join('mdm.dim_family', 'fact_operating_system.family_id', '=', 'dim_family.id')
-            ->select('fact_operating_system.os_id', 'dim_distribution.distribution_name', 'dim_edition.edition_name', 'dim_version.version_number')
-            ->get();
-
-        return view('layout', ['alias' => $alias, 'os_join' => $os_join]);
+        return view('layout', ['alias' => $alias]);
     }
 
     public function updateAlias(Request $request)
@@ -33,9 +25,8 @@ class AliasController extends Controller
         $fact_id = $request->get('factPicker');
         $alias_id = $request->get('aliasId');
 
-        DB::table('mdm.alias')
-            ->where('id', '=', $alias_id)
-            ->update(['fact_id' => $fact_id]);
+        $aliasUpdate = new Alias();
+        $aliasUpdate->updateAlias($alias_id, 'fact_operating_system', $fact_id);
 
         return redirect('alias');
     }
@@ -54,28 +45,20 @@ class AliasController extends Controller
     public function filter(Request $request)
     {
         $filter = $request->input('filter');
-        if ($filter == 'os') {
-            $alias = DB::table('mdm.alias')->where('fact_table', '=', 'fact_operating_system')->orderBy('alias', 'asc')
-                ->get();
-            return view('layout', ['alias' => $alias]);
-        } else if ($filter == 'partner') {
-            $alias = DB::table('mdm.alias')->where('fact_table', '=', 'fact_partner')->orderBy('alias', 'asc')
-                ->get();
-            return view('layout', ['alias' => $alias]);
-        } else {
-            $alias = DB::table('mdm.alias')->orderBy('alias', 'asc')
-                ->get();
-            return view('layout', ['alias' => $alias]);
-        }
-    }
-
-    public function aliasModel()
-    {
         $alias = new Alias();
 
-        $aliasPartner = $alias->getPartnerFact();
-        $aliasOS = $alias->getOSFact();
+        switch ($filter) {
+            case 'os':
+                $alias = $alias->getOSFact();
+                break;
+            case 'partner':
+                $alias = $alias->getPartnerFact();
+                break;
+            default:
+                $alias->get();
+                break;
+        }
 
-        return view('layout', ['alias' => $alias, 'aliasPartner' => $aliasPartner, 'aliasOS' => $aliasOS]);
+        return view('layout', ['alias' => $alias]);
     }
 }
