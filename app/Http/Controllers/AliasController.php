@@ -17,7 +17,23 @@ class AliasController extends Controller
         $alias = Alias::orderBy('id', 'asc')
             ->get();
 
-        return view('layout', ['alias' => $alias]);
+        $validQuery = true;
+        $exception = '';
+
+        try {
+            $idTest = DB::table('mdm.dim_version')->insert(['version_number' => 'testing exception', 'eol_date' => 'abc']);
+        } catch (\Exception $th) {
+            // Log::info($th);
+            $validQuery = false;
+            // $exception = $th->getMessage();
+            return back()->withError($th->getMessage())->withInput();
+        }
+
+        if ($validQuery) {
+            return view('layout', ['alias' => $alias]);
+        } else {
+            return view('layout', ['alias' => $alias, compact('idTest')]);
+        }
     }
 
     public function updateAlias(Request $request)
@@ -60,5 +76,16 @@ class AliasController extends Controller
         }
 
         return view('layout', ['alias' => $alias]);
+    }
+
+    public function throwException()
+    {
+        try {
+            DB::table('mdm.dim_version')->insert(['version_number' => 'testing exception', 'eol_date' => 'abc']);
+        } catch (\Exception $th) {
+            Log::info($th);
+
+            return view('alias', ['th' => $th]);
+        }
     }
 }

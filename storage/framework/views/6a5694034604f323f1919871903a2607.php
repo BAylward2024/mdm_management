@@ -14,6 +14,7 @@
         <?php echo $__env->make('nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <div class="container">
 
+
             <!-- Page Content -->
             <?php if(Route::is('distribution')): ?>
             <?php echo $__env->make('distr', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

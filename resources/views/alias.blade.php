@@ -1,6 +1,13 @@
 <div>
     <h1 class="h1-header">Alias</h1>
     <div>
+        @isset($th)
+        {{ $th->getMessage() }}
+
+        @if (session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+        @endisset
         <span class="alias-group-by-title">Filter By:</span>
         <div class="alias-group-by">
             <form action="{{ route('alias.os') }}">
@@ -15,7 +22,7 @@
                 <button type="submit">Clear</button>
             </form>
         </div>
-
+        @isset($alias)
         <table>
             <thead>
                 <tr>
@@ -53,5 +60,6 @@
                 @endforeach
             </tbody>
         </table>
+        @endisset
     </div>
 </div>

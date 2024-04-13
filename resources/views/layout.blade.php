@@ -14,6 +14,7 @@
         @include('nav')
         <div class="container">
 
+
             <!-- Page Content -->
             @if(Route::is('distribution'))
             @include('distr')

@@ -1,6 +1,14 @@
 <div>
     <h1 class="h1-header">Alias</h1>
     <div>
+        <?php if(isset($th)): ?>
+        <?php echo e($th->getMessage()); ?>
+
+
+        <?php if(session('error')): ?>
+        <div class="alert alert-danger"><?php echo e(session('error')); ?></div>
+        <?php endif; ?>
+        <?php endif; ?>
         <span class="alias-group-by-title">Filter By:</span>
         <div class="alias-group-by">
             <form action="<?php echo e(route('alias.os')); ?>">
@@ -15,7 +23,7 @@
                 <button type="submit">Clear</button>
             </form>
         </div>
-
+        <?php if(isset($alias)): ?>
         <table>
             <thead>
                 <tr>
@@ -57,5 +65,6 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
+        <?php endif; ?>
     </div>
 </div><?php /**PATH C:\src\Laravel\mdm-project\mdm_management\resources\views/alias.blade.php ENDPATH**/ ?>
